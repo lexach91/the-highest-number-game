@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.score-zone {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.play-zone {    
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    grid-template-areas: 
+        ". num1 ."
+        "num2 arrows num3"
+        ". num4 .";
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+#num1 {
+    grid-area: num1;
+}
+#num2 {
+    grid-area: num2;
+}
+#num3 {
+    grid-area: num3;
+}
+#num4 {
+    grid-area: num4;
+}
+
+#arrows {
+    grid-area: arrows;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    grid-template-areas: 
+        ". up ."
+        "left . right"
+        ". down .";
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+#up {
+    grid-area: up;
+}
+#down {
+    grid-area: down;
+}
+#left {
+    grid-area: left;
+}
+#right {
+    grid-area: right;
+}
