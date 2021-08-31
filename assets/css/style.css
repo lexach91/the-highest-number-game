@@ -6,6 +6,8 @@
 
 body {
     text-align: center;
+    background: black;
+    color: white;
 }
 
 .game-container {
@@ -13,15 +15,21 @@ body {
     flex-direction: column;
     max-width: 70%;
     margin: 0 auto;
+    margin-top: 2%;
+    background-color: grey;
+    border-radius: 15px;
+    padding: 1em;
+    max-height: 90vh;
 }
 
 .score-zone {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
-.play-zone {    
+.play-zone {
+    height: 70vh;    
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: 1fr 1fr 1fr; 
@@ -74,4 +82,64 @@ body {
 }
 #right {
     grid-area: right;
+}
+
+.number {
+    background-color: green;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 250%;
+    border-radius: 15px;
+}
+
+.timer-zone {
+    width: 80%;
+    background-color: white;
+    height: 15px;
+    margin: 0 auto;
+    border-radius: 15px;
+    border: 2px solid green;
+}
+
+.timer {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    /* animation-name: timer;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out; */
+}
+
+@keyframes timer {
+    from{
+        width: 100%
+    }
+    to{
+        width: 0%;
+    }
+}
+
+#arrows button {
+    background: none;
+    border: none;
+    font-size: 200%;
+}
+
+.button-zone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+}
+
+.button-zone button {
+    width: 140px;
+    height: 50px;
+    margin: 0 1em;
+    border-radius: 15px;
 }
