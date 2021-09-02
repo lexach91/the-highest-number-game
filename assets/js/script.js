@@ -16,11 +16,31 @@ function runGame() {
       timeForRound = 15;
   }
   runTimer(timeForRound);  
-  document.addEventListener("keydown", checkChoice ,{once: true});
+  document.addEventListener("keydown", checkChoiceForKeyboard, { once: true });
+  let numbers = document.getElementsByClassName('number')
+  for (let number of numbers) {
+      number.addEventListener('click', checkChoiceForClick, {once: true});
+  }
   
 }
+function checkChoiceForClick(event) {
+    let choice = parseInt(event.target.innerText);
+    let num1 = parseInt(document.getElementById("num1").innerText);
+    let num2 = parseInt(document.getElementById("num2").innerText);
+    let num3 = parseInt(document.getElementById("num3").innerText);
+    let num4 = parseInt(document.getElementById("num4").innerText);
+    let rightChoice = Math.max(num1, num2, num3, num4);
+    if (choice === rightChoice) {
+      incrementScore();
+      runGame();
+    } else {
+      clearInterval(interval);
+      document.getElementsByClassName("timer")[0].style.width = 0 + "%";
+      document.dispatchEvent(endGameEvent);
+    }
 
-function checkChoice(event) {
+}
+function checkChoiceForKeyboard(event) {
   if (event.repeat) {
     return false;
   } else {
@@ -123,9 +143,9 @@ const endGameEvent = new Event('endgame');
 document.addEventListener(
   "endgame",
   function () {
-    document.removeEventListener("keydown", checkChoice);
+    document.removeEventListener("keydown", checkChoiceForKeyboard);
     incrementRecord();
-    console.log("END GAME WORKS");
+    // console.log("END GAME WORKS");
   }
 );
 

@@ -93,6 +93,7 @@ body {
     align-items: center;
     font-size: 250%;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .timer-zone {
