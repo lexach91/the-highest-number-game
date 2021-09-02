@@ -1,9 +1,21 @@
 var interval;
-var score = 0;
+// var score = 0;
 function runGame() {
   randomizeNumbers();
   clearInterval(interval);
-  runTimer(50);  
+  let timeForRound;
+  if (parseInt(document.getElementById("score").innerText) <= 5) {
+    timeForRound = 100;
+  } else if (parseInt(document.getElementById("score").innerText) <= 10) {
+    timeForRound = 80;
+  } else if (parseInt(document.getElementById("score").innerText) <= 15) {
+    timeForRound = 50;
+  } else if (parseInt(document.getElementById("score").innerText) <= 20) {
+    timeForRound = 30;
+  } else {
+      timeForRound = 15;
+  }
+  runTimer(timeForRound);  
   document.addEventListener("keydown", checkChoice ,{once: true});
   
 }
@@ -31,9 +43,9 @@ function checkChoice(event) {
       incrementScore();
       runGame();
     } else {
-      randomizeNumbers();
-      runGame();
-      console.log("Else happened");
+      clearInterval(interval);
+      document.getElementsByClassName("timer")[0].style.width = 0 + "%";
+      document.dispatchEvent(endGameEvent);
     }
   }  
   
@@ -47,10 +59,10 @@ function randomizeNumbers() {
 }
 
 function incrementScore() {
-  //   let score = 0;
-  //   score = parseInt(document.getElementById("score").innerText);
-  //   score++;
-  document.getElementById("score").innerText = ++score;
+  let score = parseInt(document.getElementById("score").innerText);
+  score++;
+  document.getElementById("score").innerText = score;
+//   document.getElementById("score").innerText = ++score;
 }
 
 function incrementRecord() {
@@ -62,14 +74,26 @@ function incrementRecord() {
 function showRules() {
   document.getElementById("rules-modal").style.display = "flex";
   document.getElementById("rules-modal").style.animationName = "modal-appear";
-  document.getElementById("close-rules").addEventListener("click", function () {
+  document.getElementById("close-rules").addEventListener("click", close);
+  window.onclick = function(e) {
+      if(e.target === document.getElementById("rules-modal")) {
+          close();
+      }
+  }
+
+  window.onkeydown = function(e) {
+      if(e.key === 'Escape') {
+          close();
+      }
+  }
+
+  function close() {
     document.getElementById("rules-modal").style.animationName =
       "modal-disappear";
     setTimeout(function () {
       document.getElementById("rules-modal").style.display = "none";
     }, 400);
-  });
-  
+  }
 }
 
 function showGameResults() {}
@@ -83,10 +107,11 @@ function runTimer(time) {
   }, time);
   setTimeout(function () {
       if (endGame()) {
+        
         document.dispatchEvent(endGameEvent);
       }  
 
-  }, 100 * time)
+  }, 100 * time);
 }
 
 function endGame() {
@@ -99,9 +124,9 @@ document.addEventListener(
   "endgame",
   function () {
     document.removeEventListener("keydown", checkChoice);
+    incrementRecord();
     console.log("END GAME WORKS");
-  },
-  { once: true }
+  }
 );
 
 // document.dispatchEvent(endGameEvent);
