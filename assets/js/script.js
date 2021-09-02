@@ -4,49 +4,39 @@ function runGame() {
   randomizeNumbers();
   clearInterval(interval);
   runTimer(50);  
-  document.addEventListener("keydown", function(e) {
-      if(e.repeat) {
-          return false;
-      } else {
-          checkChoice(e);
-
-      }
-  },{once: true});
+  document.addEventListener("keydown", checkChoice ,{once: true});
   
 }
 
 function checkChoice(event) {
-  let choice = event.keyCode;
-  let num1 = parseInt(document.getElementById("num1").innerText);
-  let num2 = parseInt(document.getElementById("num2").innerText);
-  let num3 = parseInt(document.getElementById("num3").innerText);
-  let num4 = parseInt(document.getElementById("num4").innerText);
-  let rightChoice = Math.max(num1, num2, num3, num4);
-  if (choice === 38 && num1 === rightChoice) {
-    
-      incrementScore();
-      runGame();
-    
-  } else if (choice === 37 && num2 === rightChoice) {
-    
-      incrementScore();
-      runGame();
-    
-  } else if (choice === 39 && num3 === rightChoice) {
-    
-      incrementScore();
-      runGame();
-    
-  } else if (choice === 40 && num4 === rightChoice) {
-    
-      incrementScore();
-      runGame();
-    
+  if (event.repeat) {
+    return false;
   } else {
-    randomizeNumbers();
-    runGame();
-    console.log("Else happened");
-  }
+    let choice = event.keyCode;
+    let num1 = parseInt(document.getElementById("num1").innerText);
+    let num2 = parseInt(document.getElementById("num2").innerText);
+    let num3 = parseInt(document.getElementById("num3").innerText);
+    let num4 = parseInt(document.getElementById("num4").innerText);
+    let rightChoice = Math.max(num1, num2, num3, num4);
+    if (choice === 38 && num1 === rightChoice) {
+      incrementScore();
+      runGame();
+    } else if (choice === 37 && num2 === rightChoice) {
+      incrementScore();
+      runGame();
+    } else if (choice === 39 && num3 === rightChoice) {
+      incrementScore();
+      runGame();
+    } else if (choice === 40 && num4 === rightChoice) {
+      incrementScore();
+      runGame();
+    } else {
+      randomizeNumbers();
+      runGame();
+      console.log("Else happened");
+    }
+  }  
+  
 }
 
 function randomizeNumbers() {
@@ -79,6 +69,7 @@ function showRules() {
       document.getElementById("rules-modal").style.display = "none";
     }, 400);
   });
+  
 }
 
 function showGameResults() {}
@@ -107,6 +98,7 @@ const endGameEvent = new Event('endgame');
 document.addEventListener(
   "endgame",
   function () {
+    document.removeEventListener("keydown", checkChoice);
     console.log("END GAME WORKS");
   },
   { once: true }
