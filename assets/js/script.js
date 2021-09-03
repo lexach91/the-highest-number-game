@@ -20,6 +20,7 @@ function runGame() {
   let numbers = document.getElementsByClassName('number')
   for (let number of numbers) {
       number.addEventListener('click', checkChoiceForClick, {once: true});
+      number.style.cursor = 'pointer';
   }
   
 }
@@ -116,7 +117,30 @@ function showRules() {
   }
 }
 
-function showGameResults() {}
+function showGameResults() {
+    document.getElementById("endgame-modal").style.display = "flex";
+    document.getElementById("endgame-modal").style.animationName = "modal-appear";
+    document.getElementById("close-modal").addEventListener("click", close);
+    window.onclick = function (e) {
+      if (e.target === document.getElementById("endgame-modal")) {
+        close();
+      }
+    };
+
+    window.onkeydown = function (e) {
+      if (e.key === "Escape") {
+        close();
+      }
+    };
+
+    function close() {
+      document.getElementById("endgame-modal").style.animationName =
+        "modal-disappear";
+      setTimeout(function () {
+        document.getElementById("endgame-modal").style.display = "none";
+      }, 400);
+    }
+}
 
 function runTimer(time) {
   let timer = document.getElementsByClassName("timer")[0];
@@ -144,7 +168,15 @@ document.addEventListener(
   "endgame",
   function () {
     document.removeEventListener("keydown", checkChoiceForKeyboard);
+    let numbers = document.getElementsByClassName("number");
+    for (let number of numbers) {
+      number.removeEventListener("click", checkChoiceForClick);
+      number.style.cursor = "default";
+    }
     incrementRecord();
+    document.getElementById("gameover-score").innerText = document.getElementById("score").innerText;
+    document.getElementById("gameover-record").innerText = document.getElementById("record").innerText;
+    showGameResults();
     // console.log("END GAME WORKS");
   }
 );
