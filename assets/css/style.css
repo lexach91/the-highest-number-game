@@ -55,6 +55,10 @@ body {
 #num4 {
     grid-area: num4;
 }
+.rotate {
+    transform: rotate(360deg);
+    transition: transform 300ms ease-in-out;
+}
 
 #arrows {
     grid-area: arrows;

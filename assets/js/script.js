@@ -1,4 +1,5 @@
 var interval;
+var timeOut;
 // var score = 0;
 function runGame() {
   randomizeNumbers();
@@ -36,6 +37,7 @@ function checkChoiceForClick(event) {
       runGame();
     } else {
       clearInterval(interval);
+      clearTimeout(timeOut);
       document.getElementsByClassName("timer")[0].style.width = 0 + "%";
       document.dispatchEvent(endGameEvent);
     }
@@ -52,19 +54,36 @@ function checkChoiceForKeyboard(event) {
     let num4 = parseInt(document.getElementById("num4").innerText);
     let rightChoice = Math.max(num1, num2, num3, num4);
     if (choice === 38 && num1 === rightChoice) {
+      document.getElementById("num1").classList.add('rotate');
+      setTimeout(function() {
+        document.getElementById("num1").classList.remove("rotate");
+      }, 300)  
       incrementScore();
       runGame();
     } else if (choice === 37 && num2 === rightChoice) {
+      document.getElementById("num2").classList.add("rotate");
+      setTimeout(function () {
+        document.getElementById("num2").classList.remove("rotate");
+      }, 300);  
       incrementScore();
       runGame();
     } else if (choice === 39 && num3 === rightChoice) {
+      document.getElementById("num3").classList.add("rotate");
+      setTimeout(function () {
+        document.getElementById("num3").classList.remove("rotate");
+      }, 300);  
       incrementScore();
       runGame();
     } else if (choice === 40 && num4 === rightChoice) {
+      document.getElementById("num4").classList.add("rotate");
+      setTimeout(function () {
+        document.getElementById("num4").classList.remove("rotate");
+      }, 300);  
       incrementScore();
       runGame();
     } else {
       clearInterval(interval);
+      clearTimeout(timeOut);
       document.getElementsByClassName("timer")[0].style.width = 0 + "%";
       document.dispatchEvent(endGameEvent);
     }
@@ -93,6 +112,7 @@ function incrementRecord() {
 }
 
 function showRules() {
+  clearTimeout(timeOut);
   document.getElementById("rules-modal").style.display = "flex";
   document.getElementById("rules-modal").style.animationName = "modal-appear";
   document.getElementById("close-rules").addEventListener("click", close);
@@ -149,12 +169,10 @@ function runTimer(time) {
     width--;
     timer.style.width = width + "%";
   }, time);
-  setTimeout(function () {
-      if (endGame()) {
-        
-        document.dispatchEvent(endGameEvent);
-      }  
-
+  timeOut = setTimeout(function () {
+    if (endGame()) {
+      document.dispatchEvent(endGameEvent);
+    }
   }, 100 * time);
 }
 
@@ -176,6 +194,7 @@ document.addEventListener(
     incrementRecord();
     document.getElementById("gameover-score").innerText = document.getElementById("score").innerText;
     document.getElementById("gameover-record").innerText = document.getElementById("record").innerText;
+    document.getElementById("score").innerText;
     showGameResults();
     // console.log("END GAME WORKS");
   }
