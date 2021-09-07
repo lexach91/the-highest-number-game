@@ -59,29 +59,37 @@ function checkChoiceForKeyboard(event) {
     let rightChoice = Math.max(num1, num2, num3, num4);
     if (choice === 38 && num1 === rightChoice) {
       document.getElementById("num1").classList.add('rotate');
+      document.getElementById("up").classList.add('blink');
       setTimeout(function() {
         document.getElementById("num1").classList.remove("rotate");
+        document.getElementById("up").classList.remove("blink");
       }, 300)  
       incrementScore();
       runGame();
     } else if (choice === 37 && num2 === rightChoice) {
       document.getElementById("num2").classList.add("rotate");
+      document.getElementById("left").classList.add("blink");
       setTimeout(function () {
         document.getElementById("num2").classList.remove("rotate");
+        document.getElementById("left").classList.remove("blink");
       }, 300);  
       incrementScore();
       runGame();
     } else if (choice === 39 && num3 === rightChoice) {
       document.getElementById("num3").classList.add("rotate");
+      document.getElementById("right").classList.add("blink");
       setTimeout(function () {
         document.getElementById("num3").classList.remove("rotate");
+        document.getElementById("right").classList.remove("blink");
       }, 300);  
       incrementScore();
       runGame();
     } else if (choice === 40 && num4 === rightChoice) {
       document.getElementById("num4").classList.add("rotate");
+      document.getElementById("down").classList.add("blink");
       setTimeout(function () {
         document.getElementById("num4").classList.remove("rotate");
+        document.getElementById("down").classList.remove("blink");
       }, 300);  
       incrementScore();
       runGame();
@@ -120,6 +128,7 @@ function showRules() {
   document.getElementById("rules-modal").style.display = "flex";
   document.getElementById("rules-modal").style.animationName = "modal-appear";
   document.getElementById("close-rules").addEventListener("click", close);
+  document.getElementById("close-rules").focus();
   window.onclick = function(e) {
       if(e.target === document.getElementById("rules-modal")) {
           close();
@@ -142,8 +151,11 @@ function showRules() {
 }
 
 function showGameResults() {
+    clearInterval(interval);
+    clearTimeout(timeOut);
     document.getElementById("endgame-modal").style.display = "flex";
     document.getElementById("endgame-modal").style.animationName = "modal-appear";
+    document.getElementById("close-modal").focus();
     document.getElementById("close-modal").addEventListener("click", close);
     window.onclick = function (e) {
       if (e.target === document.getElementById("endgame-modal")) {
