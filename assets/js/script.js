@@ -33,6 +33,10 @@ function checkChoiceForClick(event) {
     let num4 = parseInt(document.getElementById("num4").innerText);
     let rightChoice = Math.max(num1, num2, num3, num4);
     if (choice === rightChoice) {
+      event.target.classList.add("rotate");
+      setTimeout(function () {
+        event.target.classList.remove("rotate");
+      }, 300);    
       incrementScore();
       runGame();
     } else {
