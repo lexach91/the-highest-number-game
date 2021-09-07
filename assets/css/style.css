@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +9,12 @@ body {
     text-align: center;
     background: black;
     color: white;
+    background: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 .game-container {
@@ -16,16 +23,24 @@ body {
     max-width: 70%;
     margin: 0 auto;
     margin-top: 2%;
-    background-color: grey;
+    background-color: #60656F;
+    opacity: 0.9;
+    backdrop-filter: blur(20px);
     border-radius: 15px;
     padding: 1em;
     max-height: 90vh;
+}
+
+#game-heading {
+    font-size: 2.5em;
 }
 
 .score-zone {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 1.2em;
+    padding: 0 4em;
 }
 
 .play-zone {
@@ -56,7 +71,7 @@ body {
     grid-area: num4;
 }
 .rotate {
-    transform: rotate(360deg);
+    transform: rotate(360deg) scale(1.5);
     transition: transform 300ms ease-in-out;
 }
 
@@ -89,7 +104,7 @@ body {
 }
 
 .number {
-    background-color: green;
+    background-color: #279AF1;
     width: 100px;
     height: 100px;
     display: flex;
@@ -97,8 +112,10 @@ body {
     align-items: center;
     font-size: 250%;
     border-radius: 15px;
+    box-shadow: 0 0 10px 5px #279AF1;
     /* cursor: pointer; */
 }
+
 
 .timer-zone {
     width: 80%;
@@ -147,6 +164,10 @@ body {
     height: 50px;
     margin: 0 1em;
     border-radius: 15px;
+    background-color: #F7F7FF;
+    font-size: 120%;
+    outline: none;
+    border: 3px solid #279AF1;
 }
 .modal-content {
     
