@@ -34,6 +34,14 @@ body {
     max-height: 95vh;
 }
 
+#score {
+    color: yellowgreen; 
+}
+
+#record {
+    color:rgba(39, 154, 241, 1)
+}
+
 #game-heading {
     font-size: 2.5em;
 }
@@ -120,8 +128,8 @@ body {
 
 .number {
     background-color: #279AF1;
-    width: 100px;
-    height: 100px;
+    width: 6rem;
+    height: 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,11 +170,7 @@ body {
     }
 }
 
-#arrows button {
-    background: none;
-    border: none;
-    font-size: 200%;
-}
+
 
 .button-zone {
     display: flex;
@@ -279,5 +283,85 @@ button:hover {
     }
     to{
         opacity: 0;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .game-container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        max-height: 100vh;
+        max-width: 100vw;
+        margin: 0;
+        justify-content: space-evenly;
+    }
+    .modal-content {
+
+        width: 100%;
+        height: 100%;
+       
+    }
+    .timer-zone {
+        width: 100%;
+        /* background-color: white; */
+        height: 1em;
+    }
+    .score-zone {
+        font-size: 1em;
+        padding: 0 0.5em;
+    }
+    #game-heading {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width : 1024px) and (orientation : landscape) {
+    #game-heading {
+        font-size: 1.5rem;
+    }
+
+    .score-zone {
+        justify-content: space-between;
+        font-size: 1em;
+        padding: 0 1em;
+    }
+    
+    .number {
+        width: 4rem;
+        height: 4rem;
+        font-size: 150%;
+        border-radius: 15px;
+        box-shadow: 0 0 10px 5px #279AF1;
+        /* cursor: pointer; */
+    }
+
+    #arrows {
+        font-size: 1em;
+    }
+
+    button {
+        width: 10em;
+        height: 2em;
+        font-size: 100%;
+    }
+
+    .game-container {
+        padding: 0;
+        justify-content: space-evenly;
+    }
+
+    .play-zone {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .button-zone {
+        padding: 0.1em;
+    }
+    .timer-zone {
+        width: 90%;
+        /* background-color: white; */
+        height: 0.7em;
     }
 }

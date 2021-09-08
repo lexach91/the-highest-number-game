@@ -33,6 +33,27 @@ function checkChoiceForClick(event) {
     let num4 = parseInt(document.getElementById("num4").innerText);
     let rightChoice = Math.max(num1, num2, num3, num4);
     if (choice === rightChoice) {
+      if(num1 === rightChoice){
+        document.getElementById("up").classList.add("blink");
+        setTimeout(function () {
+          document.getElementById("up").classList.remove("blink");
+        }, 300);
+      } else if (num2 === rightChoice){
+        document.getElementById("left").classList.add("blink");
+        setTimeout(function () {
+          document.getElementById("left").classList.remove("blink");
+        }, 300);
+      } else if (num3 === rightChoice) {
+        document.getElementById("right").classList.add("blink");
+        setTimeout(function () {
+          document.getElementById("right").classList.remove("blink");
+        }, 300);
+      } else {
+        document.getElementById("down").classList.add("blink");
+        setTimeout(function () {
+          document.getElementById("down").classList.remove("blink");
+        }, 300);
+      }
       event.target.classList.add("rotate");
       setTimeout(function () {
         event.target.classList.remove("rotate");
