@@ -189,6 +189,7 @@ function showGameResults() {
     for (let number of numbers) {
       number.removeEventListener("click", checkChoiceForClick);
       number.style.cursor = "default";
+      number.innerText = 0;
     }
     incrementRecord();
     document.getElementById("gameover-score").innerText =
