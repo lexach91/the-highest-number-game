@@ -365,3 +365,8 @@ button:hover {
         height: 0.7em;
     }
 }
+
+.line-path {
+    fill:none;
+    stroke: white;
+}
