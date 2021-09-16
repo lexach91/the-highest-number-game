@@ -368,7 +368,15 @@ button:hover {
 
 .line-path {
     fill:none;
-    stroke: white;
+    stroke: #279AF1;
+    stroke-width: 3;
+    stroke-linejoin: round;
+    stroke-opacity: 1;
+}
+
+svg {
+    stroke-width: .5;
+    stroke-opacity: .3;
 }
 
 /* .svg-container {

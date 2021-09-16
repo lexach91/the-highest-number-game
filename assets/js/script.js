@@ -3,7 +3,7 @@ var timeOut;
 var dataset = [
   { round: 0, points: 0 },
 ];
-var currentRound = 0;
+var currentRound = 1;
 // var score = 0;
 function runGame() {
   randomizeNumbers();
@@ -186,7 +186,9 @@ function showGameResults() {
     let currentScore = parseInt(document.getElementById("score").innerText);
     let result = { round: currentRound, points: currentScore };
     dataset.push(result);
-    render(dataset);
+    if (currentRound > 0) {
+      render(dataset);
+    }
     clearInterval(interval);
     clearTimeout(timeOut); 
     document.removeEventListener("keydown", checkChoiceForKeyboard);
