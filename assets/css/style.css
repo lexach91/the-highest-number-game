@@ -377,6 +377,12 @@ button:hover {
 svg {
     stroke-width: .5;
     stroke-opacity: .3;
+    text-anchor: middle;
+}
+
+text {
+    fill: white;
+    font-family: 'Share Tech Mono', monospace;
 }
 
 /* .svg-container {

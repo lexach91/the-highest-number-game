@@ -368,5 +368,9 @@ const render = (data) => {
     .attr("class", "line-path")
     .attr("d", lineGenerator(data));
 
-  g.append("text").attr("class", "title").attr("y", -10).text(title);
+  g.append("text")
+    .attr("class", "title")
+    .attr("y", -10)
+    .text(title)
+    .attr("transform", `translate(${innerWidth / 2}, 0)`);
 };
