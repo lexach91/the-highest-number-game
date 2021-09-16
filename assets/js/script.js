@@ -70,6 +70,8 @@ function checkChoiceForClick(event) {
       document.getElementsByClassName("timer")[0].style.width = 0 + "%";
       // document.dispatchEvent(endGameEvent);
       showGameResults();
+      console.log("From mouse");
+
     }
 
 }
@@ -125,6 +127,8 @@ function checkChoiceForKeyboard(event) {
       document.getElementsByClassName("timer")[0].style.width = 0 + "%";
       // document.dispatchEvent(endGameEvent);
       showGameResults();
+      console.log("From keyboard");
+
     }
   }  
   
@@ -178,6 +182,7 @@ function showRules() {
 }
 
 function showGameResults() {
+    document.getElementsByClassName("timer")[0].style.width = "100%";
     let currentScore = parseInt(document.getElementById("score").innerText);
     let result = { round: currentRound, points: currentScore };
     dataset.push(result);
@@ -237,7 +242,10 @@ function runTimer(time) {
       endGame() &&
       document.getElementById("endgame-modal").style.display !== "flex"
     ) {
-      document.dispatchEvent(endGameEvent);
+      // document.dispatchEvent(endGameEvent);
+      showGameResults();
+      console.log("From timer");
+      console.log(timeOut);
     }
   }, 100 * time);
 }
@@ -246,16 +254,16 @@ function endGame() {
   return document.getElementsByClassName("timer")[0].style.width === "0%";
 }
 
-const endGameEvent = new Event('endgame');
+// const endGameEvent = new Event('endgame');
 
-document.addEventListener(
-  "endgame",
-  function () {
+// document.addEventListener(
+//   "endgame",
+//   function () {
     
-    showGameResults();
-    // console.log("END GAME WORKS");
-  }
-);
+//     showGameResults();
+//     // console.log("END GAME WORKS");
+//   }
+// );
 
 // document.dispatchEvent(endGameEvent);
 document.getElementById("rules").addEventListener("click", showRules);
@@ -270,6 +278,13 @@ const svg = d3
   .select("#statistics")
   // .attr("preserveAspectRatio", "xMinYMin meet")
   // .attr("viewBox", "0 0 600 600");
+
+// const svg = d3
+//   .select("div#container")
+//   .append("svg")
+//   .attr("preserveAspectRatio", "xMinYMin meet")
+//   .attr("viewBox", "0 0 300 600")
+//   .classed("svg-content", true);  
 
 const height = +svg.attr("height");
 const width = +svg.attr("width");
@@ -345,7 +360,7 @@ const render = (data) => {
     .line()
     .x((d) => xScale(xValue(d)))
     .y((d) => yScale(yValue(d)))
-    .curve(d3.curveBasis);
+    // .curve(d3.curveBasis);
 
   g.append("path")
     .attr("class", "line-path")
